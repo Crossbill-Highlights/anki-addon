@@ -1,6 +1,7 @@
 # Crossbill Anki Plugin
 
 Import flash card questions from Crossbill to Anki.
+For Crossbill highlight service, see the [Crossbill-web repository](https://github.com/Crossbill-Highlights/Crossbill-Web)
 
 ## Installation
 
