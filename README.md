@@ -1,4 +1,12 @@
+
+<p align="center">
+
+<img width="96" height="96" alt="image" src="https://github.com/user-attachments/assets/6461072f-2265-443b-a018-db7ae26cb42f" />
+</p>
+
 # Crossbill Anki Plugin
+
+[![CI](https://github.com/Crossbill-Highlights/anki-addon/actions/workflows/ci.yml/badge.svg)](https://github.com/Crossbill-Highlights/anki-addon/actions/workflows/ci.yml)
 
 Import flash card questions from Crossbill to Anki.
 For Crossbill highlight service, see the [Crossbill-web repository](https://github.com/Crossbill-Highlights/Crossbill-Web)
