@@ -4,7 +4,6 @@ Import flash card questions from Crossbill to Anki.
 For Crossbill highlight service, see the [Crossbill-web repository](https://github.com/Crossbill-Highlights/Crossbill-Web)
 
 ## Installation
-
 Follow installation instructions on [Anki addon page](https://ankiweb.net/shared/info/1205712943)
 
 ## Configuration
@@ -17,14 +16,6 @@ Follow installation instructions on [Anki addon page](https://ankiweb.net/shared
 4. Click **Save**
 
 See [config.md](config.md) for detailed configuration documentation.
-
-## Prerequisites
-
-### Crossbill Server
-
-You need a running Crossbill server with highlights. The server must be accessible from your computer where Anki is installed.
-
-````
 
 ## Development
 
@@ -70,10 +61,6 @@ poetry run pyright                # Type checking
 
 5. The plugin should appear in Tools → Add-ons
 
-   ```
-
-   ```
-
 ### Testing
 
 1. Make changes to the plugin code
@@ -91,17 +78,13 @@ Enable Anki's debug console:
 
 ## Contributing
 
-Contributions are welcome! Please see the main [Crossbill repository](https://github.com/Tumetsu/Crossbill) for contribution guidelines.
+Contributions are welcome!
 
 ## License
 
 See the main Crossbill repository for details.
 
-## Support
-
-For issues and feature requests, please visit the [Crossbill repository](https://github.com/Tumetsu/Crossbill/issues).
-
 ## Acknowledgments
 
 - Built for [Anki](https://apps.ankiweb.net/), the powerful spaced repetition software
-- Part of the [Crossbill](https://github.com/Tumetsu/Crossbill) project
+- Part of the [Crossbill](https://github.com/Crossbill-Highlights) project 
