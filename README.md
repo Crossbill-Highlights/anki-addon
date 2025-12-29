@@ -57,11 +57,7 @@ poetry run pyright                # Type checking
 3. Create a symbolic link or copy the plugin folder:
 
    ```bash
-   # Option 1: Symbolic link (recommended for development)
-   ln -s /path/to/Crossbill/clients/anki-plugin /path/to/Anki2/addons21/crossbill
-
-   # Option 2: Copy the folder
-   cp -r /path/to/Crossbill/clients/anki-plugin /path/to/Anki2/addons21/crossbill
+   cp -r . ~/.local/share/Anki2/addons21/crossbill # linux
 
    ```
 
