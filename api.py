@@ -274,7 +274,7 @@ class CrossbillAPI:
         Raises:
             CrossbillAPIError: If request fails
         """
-        endpoint = f"/api/v1/books/?limit={limit}&offset={offset}"
+        endpoint = f"/api/v1/books/?limit={limit}&offset={offset}&only_with_flashcards=true"
         data = self._make_request(endpoint)
 
         books = []
