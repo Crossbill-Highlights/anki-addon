@@ -54,12 +54,10 @@ poetry run pyright                # Type checking
    - **Mac**: `~/Library/Application Support/Anki2/addons21/`
    - **Linux**: `~/.local/share/Anki2/addons21/`
 
-3. Create a symbolic link or copy the plugin folder:
+3. Copy the plugin folder to the Anki addon folder by running:
 
    ```bash
-   cp -r . ~/.local/share/Anki2/addons21/crossbill # linux
-   cp -r . ~/library/Application\ Support/anki2/addons21/crossbill # MacOS
-
+    ./install.sh
    ```
 
 4. Restart Anki
