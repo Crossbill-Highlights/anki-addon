@@ -35,6 +35,8 @@ from api import CrossbillAPI, CrossbillAPIError
 from models import BookWithHighlightCount, FlashcardWithHighlight, PluginConfig
 from note_creator import NoteCreator
 
+from .ui_components import create_deck_selector, create_note_type_selector
+
 
 class FlashcardsBrowserDialog(QWidget):
     """Window for browsing and selecting flashcards from Crossbill"""
@@ -203,13 +205,13 @@ class FlashcardsBrowserDialog(QWidget):
         import_controls = QFormLayout()
 
         # Deck selection
-        self.deck_combo = QComboBox()
-        self.populate_decks()
+        self.deck_combo = create_deck_selector(self.config.get("default_deck", "Default"))
         import_controls.addRow("Deck:", self.deck_combo)
 
         # Note type selection
-        self.note_type_combo = QComboBox()
-        self.populate_note_types()
+        self.note_type_combo = create_note_type_selector(
+            self.config.get("default_note_type", "Basic")
+        )
         import_controls.addRow("Note Type:", self.note_type_combo)
 
         layout.addLayout(import_controls)
@@ -364,28 +366,6 @@ class FlashcardsBrowserDialog(QWidget):
             details_html += "<p><i>(Standalone flashcard - no associated highlight)</i></p>"
 
         self.flashcard_details.setHtml(details_html)
-
-    def populate_decks(self) -> None:
-        """Populate the deck selection dropdown"""
-        deck_names = sorted(mw.col.decks.all_names())
-        self.deck_combo.addItems(deck_names)
-
-        # Set default deck from config
-        default_deck = self.config.get("default_deck", "Default")
-        index = self.deck_combo.findText(default_deck)
-        if index >= 0:
-            self.deck_combo.setCurrentIndex(index)
-
-    def populate_note_types(self) -> None:
-        """Populate the note type selection dropdown"""
-        model_names = sorted(mw.col.models.all_names())
-        self.note_type_combo.addItems(model_names)
-
-        # Set default note type from config
-        default_note_type = self.config.get("default_note_type", "Basic")
-        index = self.note_type_combo.findText(default_note_type)
-        if index >= 0:
-            self.note_type_combo.setCurrentIndex(index)
 
     def load_imported_flashcards(self) -> None:
         """Load the set of already imported flashcard IDs"""

@@ -1,4 +1,3 @@
-
 <p align="center">
 
 <img width="96" height="96" alt="image" src="https://github.com/user-attachments/assets/6461072f-2265-443b-a018-db7ae26cb42f" />
@@ -12,6 +11,7 @@ Import flash card questions from Crossbill to Anki.
 For Crossbill highlight service, see the [Crossbill-web repository](https://github.com/Crossbill-Highlights/Crossbill-Web)
 
 ## Installation
+
 Follow installation instructions on [Anki addon page](https://ankiweb.net/shared/info/1205712943)
 
 ## Configuration
@@ -43,7 +43,7 @@ poetry run ruff format .          # Auto-format
 poetry run ruff check .           # Lint
 poetry run ruff check --fix .     # Auto-fix lint issues
 poetry run pyright                # Type checking
-````
+```
 
 ### Install local version to Anki
 
@@ -54,11 +54,10 @@ poetry run pyright                # Type checking
    - **Mac**: `~/Library/Application Support/Anki2/addons21/`
    - **Linux**: `~/.local/share/Anki2/addons21/`
 
-3. Create a symbolic link or copy the plugin folder:
+3. Copy the plugin folder to the Anki addon folder by running:
 
    ```bash
-   cp -r . ~/.local/share/Anki2/addons21/crossbill # linux
-
+    ./install.sh
    ```
 
 4. Restart Anki
@@ -91,4 +90,4 @@ See the main Crossbill repository for details.
 ## Acknowledgments
 
 - Built for [Anki](https://apps.ankiweb.net/), the powerful spaced repetition software
-- Part of the [Crossbill](https://github.com/Crossbill-Highlights) project 
+- Part of the [Crossbill](https://github.com/Crossbill-Highlights) project
