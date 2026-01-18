@@ -34,6 +34,7 @@ if plugin_dir not in sys.path:
 from api import CrossbillAPI, CrossbillAPIError
 from models import BookWithHighlightCount, FlashcardWithHighlight, PluginConfig
 from note_creator import NoteCreator
+from .ui_components import create_deck_selector
 
 
 class FlashcardsBrowserDialog(QWidget):
@@ -203,8 +204,7 @@ class FlashcardsBrowserDialog(QWidget):
         import_controls = QFormLayout()
 
         # Deck selection
-        self.deck_combo = QComboBox()
-        self.populate_decks()
+        self.deck_combo = create_deck_selector(self.config.get("default_deck", "Default"))
         import_controls.addRow("Deck:", self.deck_combo)
 
         # Note type selection
@@ -364,17 +364,6 @@ class FlashcardsBrowserDialog(QWidget):
             details_html += "<p><i>(Standalone flashcard - no associated highlight)</i></p>"
 
         self.flashcard_details.setHtml(details_html)
-
-    def populate_decks(self) -> None:
-        """Populate the deck selection dropdown"""
-        deck_names = sorted(mw.col.decks.all_names())
-        self.deck_combo.addItems(deck_names)
-
-        # Set default deck from config
-        default_deck = self.config.get("default_deck", "Default")
-        index = self.deck_combo.findText(default_deck)
-        if index >= 0:
-            self.deck_combo.setCurrentIndex(index)
 
     def populate_note_types(self) -> None:
         """Populate the note type selection dropdown"""

@@ -16,6 +16,8 @@ from aqt.qt import (
     QWidget,
 )
 
+from .ui_components import create_deck_selector
+
 
 class SettingsDialog(QDialog):
     """Dialog for configuring Crossbill plugin settings"""
@@ -63,10 +65,8 @@ class SettingsDialog(QDialog):
         form_layout.addRow("", spacer_label)
 
         # Default deck
-        self.default_deck_input = QLineEdit()
-        self.default_deck_input.setText(self.config.get("default_deck", "Default"))
-        self.default_deck_input.setPlaceholderText("e.g., Default")
-        form_layout.addRow("Default Deck:", self.default_deck_input)
+        self.default_deck_combo = create_deck_selector(self.config.get("default_deck", "Default"))
+        form_layout.addRow("Default Deck:", self.default_deck_combo)
 
         # Default note type
         self.default_note_type_input = QLineEdit()
@@ -165,7 +165,7 @@ class SettingsDialog(QDialog):
         server_host = self.server_host_input.text().strip()
         email = self.email_input.text().strip()
         password = self.password_input.text().strip()
-        default_deck = self.default_deck_input.text().strip()
+        default_deck = self.default_deck_combo.currentText()
         default_note_type = self.default_note_type_input.text().strip()
         suspend_on_import = self.suspend_on_import_checkbox.isChecked()
 
