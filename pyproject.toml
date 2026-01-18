@@ -1,6 +1,6 @@
 [project]
 name = "crossbill-anki-plugin"
-version = "0.5.0"
+version = "0.6.0"
 description = "Crossbill Anki Plugin - Import flashcards from Crossbill server into Anki"
 authors = [{ name = "Crossbill Contributors" }]
 readme = "README.md"
