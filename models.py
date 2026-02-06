@@ -15,8 +15,6 @@ class Book:
     title: str
     author: str | None
     isbn: str | None
-    created_at: str
-    updated_at: str
 
 
 @dataclass
@@ -48,8 +46,6 @@ class Highlight:
     note: str | None
     datetime: str
     highlight_tags: list[HighlightTag]
-    created_at: str
-    updated_at: str
 
 
 @dataclass
@@ -61,8 +57,6 @@ class Flashcard:
     highlight_id: int | None
     question: str
     answer: str
-    created_at: str
-    updated_at: str
 
 
 @dataclass
@@ -86,8 +80,6 @@ class Chapter:
     id: int
     book_id: int
     name: str
-    created_at: str
-    updated_at: str
 
 
 @dataclass

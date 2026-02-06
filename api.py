@@ -284,8 +284,6 @@ class CrossbillAPI:
                 title=book_data["title"],
                 author=book_data.get("author"),
                 isbn=book_data.get("isbn"),
-                created_at=book_data["created_at"],
-                updated_at=book_data["updated_at"],
                 highlight_count=book_data["highlight_count"],
                 flashcard_count=book_data.get("flashcard_count", 0),
             )
@@ -335,8 +333,6 @@ class CrossbillAPI:
                     note=hl_data.get("note"),
                     datetime=hl_data["datetime"],
                     highlight_tags=tags,
-                    created_at=hl_data["created_at"],
-                    updated_at=hl_data["updated_at"],
                 )
                 highlights.append(highlight)
 
@@ -344,8 +340,6 @@ class CrossbillAPI:
                 id=chapter_data["id"],
                 book_id=data["id"],  # Use book ID from parent response
                 name=chapter_data["name"],
-                created_at=chapter_data["created_at"],
-                updated_at=chapter_data["updated_at"],
                 highlights=highlights,
             )
             chapters.append(chapter)
@@ -355,8 +349,6 @@ class CrossbillAPI:
             title=data["title"],
             author=data.get("author"),
             isbn=data.get("isbn"),
-            created_at=data["created_at"],
-            updated_at=data["updated_at"],
             chapters=chapters,
         )
 
@@ -397,8 +389,6 @@ class CrossbillAPI:
                     note=hl_data.get("note"),
                     datetime=hl_data.get("datetime", ""),
                     highlight_tags=tags,
-                    created_at=hl_data["created_at"],
-                    updated_at=hl_data["updated_at"],
                 )
 
             flashcard = FlashcardWithHighlight(
@@ -407,8 +397,6 @@ class CrossbillAPI:
                 highlight_id=fc_data.get("highlight_id"),
                 question=fc_data["question"],
                 answer=fc_data["answer"],
-                created_at=fc_data["created_at"],
-                updated_at=fc_data["updated_at"],
                 highlight=highlight,
             )
             flashcards.append(flashcard)
