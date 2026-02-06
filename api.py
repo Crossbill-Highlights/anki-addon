@@ -102,6 +102,7 @@ class CrossbillAPI:
             request = urllib.request.Request(url, data=body.encode("utf-8"), method="POST")
             request.add_header("Content-Type", "application/json")
             request.add_header("Accept", "application/json")
+            request.add_header("User-Agent", "Crossbill-Anki-Addon/0.6.0")
 
             with urllib.request.urlopen(request, timeout=30) as response:
                 data = json.loads(response.read().decode("utf-8"))
@@ -116,10 +117,12 @@ class CrossbillAPI:
                         self.bearer_token, self.refresh_token, self.token_expires_at or 0
                     )
 
+                print("[Crossbill Debug] Token refresh successful")
                 return True
 
-        except Exception:
+        except Exception as e:
             # Refresh failed, clear tokens
+            print(f"[Crossbill Debug] Token refresh failed: {e}")
             self.refresh_token = ""
             self.token_expires_at = None
             return False
@@ -157,6 +160,7 @@ class CrossbillAPI:
             CrossbillAPIError: If login fails
         """
         url = f"{self.server_host}/api/v1/auth/login"
+        print(f"[Crossbill Debug] Attempting login to: {url} with email: {email}")
 
         # Prepare form data (OAuth2 password flow)
         form_data = urllib.parse.urlencode(
@@ -170,6 +174,7 @@ class CrossbillAPI:
             request = urllib.request.Request(url, data=form_data.encode("utf-8"), method="POST")
             request.add_header("Content-Type", "application/x-www-form-urlencoded")
             request.add_header("Accept", "application/json")
+            request.add_header("User-Agent", "Crossbill-Anki-Addon/0.6.0")
 
             with urllib.request.urlopen(request, timeout=30) as response:
                 data = json.loads(response.read().decode("utf-8"))
@@ -190,14 +195,19 @@ class CrossbillAPI:
             error_msg = f"HTTP {e.code}: {e.reason}"
             try:
                 error_body = e.read().decode("utf-8")
+                print(f"[Crossbill Debug] Raw error body: {error_body}")
                 error_data = json.loads(error_body)
                 if "detail" in error_data:
                     error_msg += f" - {error_data['detail']}"
-            except Exception:
-                pass
+            except Exception as parse_err:
+                print(f"[Crossbill Debug] Failed to parse error body: {parse_err}")
+                error_msg += f" (failed to parse error: {parse_err})"
+
+            print(f"[Crossbill Debug] Login failed: {error_msg}")
             raise CrossbillAPIError(f"Login failed: {error_msg}") from e
 
         except Exception as e:
+            print(f"[Crossbill Debug] Unexpected login error: {e}")
             raise CrossbillAPIError(f"Login failed: {e}") from e
 
     def _make_request(self, endpoint: str, retry_on_401: bool = True) -> dict:
@@ -222,6 +232,7 @@ class CrossbillAPI:
         try:
             request = urllib.request.Request(url)
             request.add_header("Accept", "application/json")
+            request.add_header("User-Agent", "Crossbill-Anki-Addon/0.6.0")
 
             # Add authentication header
             if self.bearer_token:
